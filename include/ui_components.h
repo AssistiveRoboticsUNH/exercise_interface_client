@@ -19,14 +19,15 @@ class UIComponents {
 
 public:
 
-    static const int BSPACING = 20, BWIDTH = 200, BHEIGHT = 100,
-                     COL1_X = 40, COL1_Y = 140, 
-                     COL2_X = 300, COL2_Y = COL1_Y,
-                     COL3_X = 560, COL3_Y = COL1_Y;
+    static const int BSPACING = 80, BWIDTH = 300, BHEIGHT = 150,
+                     COL1_X = 60, COL1_Y = 140, 
+                     COL2_X = 450, COL2_Y = COL1_Y,
+                     COL3_X = 840, COL3_Y = COL1_Y,
+                     COL4_X = 1230, COL4_Y = COL1_Y;
 
     QPushButton *trialPractice1, *trialPractice2, *trialPractice3, 
                 *trialStop, *myoCalibrate;
-    
+    QLabel *MyoLabel1, *MyoLabel2, *TabletLabel, *GlassLabel, *SpeechLabel;
 
     void setupUi(QWidget *MasterInterface) {
     
@@ -36,7 +37,7 @@ public:
             MasterInterface->setObjectName(QString("MasterInterface"));
         }
 
-        MasterInterface->resize(820, 520);
+        MasterInterface->resize(1640, 1140);
 
         /**First Column**/
         
@@ -65,7 +66,32 @@ public:
         trialPractice3->setObjectName(QString("trialPractice3"));
         trialPractice3->setGeometry(QRect(COL3_X, COL3_Y+(BHEIGHT+BSPACING), BWIDTH, BHEIGHT)); 
 
+        /**Fourth Column**/
+        
+        MyoLabel1 = new QLabel(MasterInterface);
+        MyoLabel1->setText(QString("<h1><font color='red'>Myo: Lower Arm</font></h1>"));
+        MyoLabel1->setAlignment(Qt::AlignTop | Qt::AlignLeft);
+        MyoLabel1->setGeometry(QRect(COL4_X, COL4_Y, BWIDTH, 100));
+ 
+        MyoLabel2 = new QLabel(MasterInterface);
+        MyoLabel2->setText(QString("<h1><font color='red'>Myo: Upper Arm</font></h1>"));
+        MyoLabel2->setAlignment(Qt::AlignTop | Qt::AlignLeft);
+        MyoLabel2->setGeometry(QRect(COL4_X, COL4_Y+120, BWIDTH, 100));       
 
+        TabletLabel = new QLabel(MasterInterface);
+        TabletLabel->setText(QString("<h1><font color='red'>Tablet</font></h1>"));
+        TabletLabel->setAlignment(Qt::AlignTop | Qt::AlignLeft);
+        TabletLabel->setGeometry(QRect(COL4_X, COL4_Y+240, BWIDTH, 100));
+
+        GlassLabel = new QLabel(MasterInterface);
+        GlassLabel->setText(QString("<h1><font color='red'>Eyeglass</font></h1>"));
+        GlassLabel->setAlignment(Qt::AlignTop | Qt::AlignLeft);
+        GlassLabel->setGeometry(QRect(COL4_X, COL4_Y+360, BWIDTH, 100));
+
+        SpeechLabel = new QLabel(MasterInterface);
+        SpeechLabel->setText(QString("<h1><font color='red'>Speech Recognizer</font></h1>"));
+        SpeechLabel->setAlignment(Qt::AlignTop | Qt::AlignLeft);
+        SpeechLabel->setGeometry(QRect(COL4_X, COL4_Y+480, BWIDTH, 100));
         /**Polish**/
         
         retranslateUi(MasterInterface);
@@ -93,6 +119,8 @@ public:
         trialStop->setFont(f);
         myoCalibrate->setText("Calibrate Myo");
         myoCalibrate->setFont(f);
+
+        MyoLabel1->adjustSize(); 
    }
 
     // Because the character will be a number in ASCII format, if we subtract the '0' character, it will convert it to its number form

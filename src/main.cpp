@@ -7,14 +7,16 @@
 void centerWindow(QMainWindow* w);
 
 int main(int argc, char **argv) {
-
-    ros::init(argc, argv, "exercise_interface");    
+    ros::init(argc, argv, "exercise_interface");
+    ros::AsyncSpinner spinner(1);
+   
     QApplication app(argc, argv);
     MasterInterface mi; 
     centerWindow(&mi);
     mi.show();
-
+    spinner.start();
     return app.exec();
+
 }
 
 // Finds the active window and places w in the center of that screen
@@ -27,3 +29,4 @@ void centerWindow(QMainWindow* w) {
     int y = w->height();
     w->move(desk_x / 2 - x / 2 + desk_rect.left(), desk_y / 2 - y / 2 + desk_rect.top());
 }
+

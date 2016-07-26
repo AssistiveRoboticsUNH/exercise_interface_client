@@ -1,4 +1,7 @@
 #include "../include/master_interface.h"
+#include <ctime>
+#include <iostream>
+using namespace std;
 
 // defines the functionality of the MasterInterface class
 
@@ -11,11 +14,39 @@ MasterInterface::MasterInterface(QMainWindow* parent) : QMainWindow(parent), uiC
     trialBegin_pub = n.advertise<std_msgs::Int32>("/exercise/begin_trial", 100);
     myoLaunch_pub = n.advertise<std_msgs::Int32>("/myo/launch", 100);
     myoCalibrate_pub = n.advertise<std_msgs::Int32>("/myo/calibrate", 100);
-    exerciseMode_pub = n.advertise<std_msgs::Int32>("/exercise/mode", 100);
+    //exerciseMode_pub = n.advertise<std_msgs::Int32>("/exercise/mode", 100);
+
+    myo_l_OK = 0;
+    myo_u_OK = 0;
+    myo_sub_l = n.subscribe("/myo/l/ort", 10, &MasterInterface::myo_l_detector, this);
+    myo_sub_u = n.subscribe("/myo/u/ort", 10, &MasterInterface::myo_u_detector, this);
     
+
+    speech_OK = 0;
+    sphinx_sub = n.subscribe("/recognizer/output", 10, &MasterInterface::speech_detector, this);
+
     // unallows the user to change the size of the window
     setFixedSize(size());
 }
+
+void MasterInterface::myo_l_detector(geometry_msgs::Quaternion msg) {
+    if (myo_l_OK) return;
+    uiComponents->MyoLabel1->setText(QString("<h1><font color='green'>Myo: Lower Arm OK</font></h1>"));
+    myo_l_OK = 1;
+}
+
+void MasterInterface::myo_u_detector(geometry_msgs::Quaternion msg) {
+    if (myo_u_OK) return;
+    uiComponents->MyoLabel2->setText(QString("<h1><font color='green'>Myo: Upper Arm OK</font></h1>"));
+    myo_u_OK = 1;
+}
+
+void MasterInterface::speech_detector(std_msgs::String msg) {
+    if (speech_OK) return;
+    uiComponents->SpeechLabel->setText(QString("<h1><font color='green'>Speech Recognizer OK</font></h1>"));
+    speech_OK = 1;
+}
+
 
 //void MasterInterface::on_trainingRecord_clicked() {
 
