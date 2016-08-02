@@ -17,8 +17,8 @@
     </group>
 
     <node name="recognizer" pkg="pocketsphinx" type="recognizer.py" output="screen" required="true">
-        <param name="lm" value="$(find exercise_interface_client)/data/7085.lm"/>
-        <param name="dict" value="$(find exercise_interface_client)/data/7085.dic"/>
+        <param name="lm" value="$(find exercise_interface_client)/data/8629.lm"/>
+        <param name="dict" value="$(find exercise_interface_client)/data/8629.dic"/>
     </node>
     
     

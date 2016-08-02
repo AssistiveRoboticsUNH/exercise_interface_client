@@ -34,15 +34,16 @@ private:
 
   // These publishers are used to communicate to the other project components when a button is pressed
   ros::Publisher myoLaunch_pub, myoCalibrate_pub, trialBegin_pub, exerciseMode_pub;
-  ros::Subscriber myo_sub_l, myo_sub_u, sphinx_sub;
+  ros::Subscriber myo_sub_l, myo_sub_u, sphinx_sub, score_sub;
 
   // All gui components are defined and accessible through *uiComponents
   UIComponents *uiComponents;
 
-  bool myo_l_OK, myo_u_OK, speech_OK;
+  //bool myo_l_OK, myo_u_OK, speech_OK;
   void myo_l_detector(geometry_msgs::Quaternion msg);
   void myo_u_detector(geometry_msgs::Quaternion msg);
   void speech_detector(std_msgs::String msg);
+  void score_display(std_msgs::Int32 msg);
 
 // These functions are called when their corresponding button is pressed
 // to link a button to a function, see: ui_components.h
@@ -63,6 +64,8 @@ private Q_SLOTS:
   void on_trialPractice1_clicked();
   void on_trialPractice2_clicked();
   void on_trialPractice3_clicked();
+  void on_skipDemo_clicked();
+  void on_home_clicked();
 
 };
 #endif 

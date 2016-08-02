@@ -26,8 +26,9 @@ public:
                      COL4_X = 1230, COL4_Y = COL1_Y;
 
     QPushButton *trialPractice1, *trialPractice2, *trialPractice3, 
-                *trialStop, *myoCalibrate;
-    QLabel *MyoLabel1, *MyoLabel2, *TabletLabel, *GlassLabel, *SpeechLabel;
+                *trialStop, *myoCalibrate, *skipDemo, *home;
+    QLabel *MyoLabel1, *MyoLabel2, *TabletLabel, *GlassLabel, 
+                *SpeechOutputLabel, *scoreLabel;
 
     void setupUi(QWidget *MasterInterface) {
     
@@ -44,6 +45,10 @@ public:
         trialPractice1 = new QPushButton(MasterInterface);
         trialPractice1->setObjectName(QString("trialPractice1"));
         trialPractice1->setGeometry(QRect(COL1_X, COL1_Y+BHEIGHT+BSPACING, BWIDTH, BHEIGHT)); 
+
+        skipDemo = new QPushButton(MasterInterface);
+        skipDemo->setObjectName(QString("skipDemo"));
+        skipDemo->setGeometry(QRect(COL1_X, COL1_Y+2*(BHEIGHT+BSPACING), BWIDTH, BHEIGHT));
 
         /**Second Column**/
         
@@ -62,9 +67,18 @@ public:
 
         /**Third Column**/
         
+        scoreLabel = new QLabel(MasterInterface);
+        scoreLabel->setText(QString(""));
+        scoreLabel->setAlignment(Qt::AlignTop | Qt::AlignLeft);
+        scoreLabel->setGeometry(QRect(COL3_X, COL3_Y, BWIDTH, BHEIGHT));
+        
         trialPractice3 = new QPushButton(MasterInterface);
         trialPractice3->setObjectName(QString("trialPractice3"));
         trialPractice3->setGeometry(QRect(COL3_X, COL3_Y+(BHEIGHT+BSPACING), BWIDTH, BHEIGHT)); 
+
+        home = new QPushButton(MasterInterface);
+        home->setObjectName(QString("home"));
+        home->setGeometry(QRect(COL3_X, COL3_Y+2*(BHEIGHT+BSPACING), BWIDTH, BHEIGHT)); 
 
         /**Fourth Column**/
         
@@ -78,20 +92,20 @@ public:
         MyoLabel2->setAlignment(Qt::AlignTop | Qt::AlignLeft);
         MyoLabel2->setGeometry(QRect(COL4_X, COL4_Y+120, BWIDTH, 100));       
 
-        TabletLabel = new QLabel(MasterInterface);
-        TabletLabel->setText(QString("<h1><font color='red'>Tablet</font></h1>"));
-        TabletLabel->setAlignment(Qt::AlignTop | Qt::AlignLeft);
-        TabletLabel->setGeometry(QRect(COL4_X, COL4_Y+240, BWIDTH, 100));
+//        TabletLabel = new QLabel(MasterInterface);
+//        TabletLabel->setText(QString("<h1><font color='red'>Tablet</font></h1>"));
+//        TabletLabel->setAlignment(Qt::AlignTop | Qt::AlignLeft);
+//        TabletLabel->setGeometry(QRect(COL4_X, COL4_Y+240, BWIDTH, 100));
 
-        GlassLabel = new QLabel(MasterInterface);
-        GlassLabel->setText(QString("<h1><font color='red'>Eyeglass</font></h1>"));
-        GlassLabel->setAlignment(Qt::AlignTop | Qt::AlignLeft);
-        GlassLabel->setGeometry(QRect(COL4_X, COL4_Y+360, BWIDTH, 100));
+//        GlassLabel = new QLabel(MasterInterface);
+//        GlassLabel->setText(QString("<h1><font color='red'>Eyeglass</font></h1>"));
+//        GlassLabel->setAlignment(Qt::AlignTop | Qt::AlignLeft);
+//        GlassLabel->setGeometry(QRect(COL4_X, COL4_Y+360, BWIDTH, 100));
 
-        SpeechLabel = new QLabel(MasterInterface);
-        SpeechLabel->setText(QString("<h1><font color='red'>Speech Recognizer</font></h1>"));
-        SpeechLabel->setAlignment(Qt::AlignTop | Qt::AlignLeft);
-        SpeechLabel->setGeometry(QRect(COL4_X, COL4_Y+480, BWIDTH, 100));
+        SpeechOutputLabel = new QLabel(MasterInterface);
+        SpeechOutputLabel->setText(QString("<h1><font color='red'>Speech Detected: None</font></h1>"));
+        SpeechOutputLabel->setAlignment(Qt::AlignTop | Qt::AlignLeft);
+        SpeechOutputLabel->setGeometry(QRect(COL4_X, COL4_Y+240, BWIDTH, 100));
         /**Polish**/
         
         retranslateUi(MasterInterface);
@@ -106,7 +120,7 @@ public:
     void retranslateUi(QWidget *MasterInterface){
 
         QFont f;
-        f.setPointSize(16);
+        f.setPointSize(22);
         MasterInterface->setWindowTitle(QApplication::translate("MasterInterface", "MasterInterface", 0));
 
         trialPractice1->setText("Task 1");
@@ -115,12 +129,14 @@ public:
         trialPractice2->setFont(f);
         trialPractice3->setText("Task 3");
         trialPractice3->setFont(f);
-        trialStop->setText("Stop");
+        trialStop->setText("Stop Practice");
         trialStop->setFont(f);
         myoCalibrate->setText("Calibrate Myo");
         myoCalibrate->setFont(f);
-
-        MyoLabel1->adjustSize(); 
+        skipDemo->setText("Skip Demo");
+        skipDemo->setFont(f);
+        home->setText("Home/Reset");
+        home->setFont(f);
    }
 
     // Because the character will be a number in ASCII format, if we subtract the '0' character, it will convert it to its number form
