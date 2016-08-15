@@ -41,17 +41,20 @@ void MasterInterface::myo_u_detector(geometry_msgs::Quaternion msg) {
 }
 
 void MasterInterface::score_display(std_msgs::Int32 msg) {
-    uiComponents->scoreLabel->setText(QString("<h1><font color='green'>Your score is</font> <font color='black'> %1 </font></h1>").arg(msg.data));
+    //uiComponents->scoreLabel->setText(QString("<h1><font color='green'>Your score is</font> <font color='black'> %1 </font></h1>").arg(msg.data));
 }
 
 void MasterInterface::speech_detector(std_msgs::String msg) {
-
     QString output;
-    output = QString("<h1><font color='green'>Speech Detected:</font><font color='green'> ") + QString(msg.data.c_str()) + QString("</font></h1>");
+    std_msgs::Int32 display;
+    
+    if (msg.data == string("help")) {   
+    output = QString("<h1><font color='green'>Speech Detected:<font size='5'> ") + QString(msg.data.c_str()) + QString("</font></font></h1>");
     uiComponents->SpeechOutputLabel->setText(output);
+    }
 
     if (msg.data == string("calibration")) {
-        std_msgs::Int32 msg, display;
+        std_msgs::Int32 msg;
         
         msg.data = uiComponents->getMyoCount();
         myoCalibrate_pub.publish(msg);
@@ -61,25 +64,24 @@ void MasterInterface::speech_detector(std_msgs::String msg) {
         return;
     }
     if (msg.data==string("task one") || msg.data==string("task two") || msg.data==string("task three") || msg.data==string("home")) {
-        std_msgs::Int32 display;
         display.data = 1;
         exerciseMode_pub.publish(display);
         return;
     }
     if (msg.data == string("stop")) {
-        std_msgs::Int32 display;
         //uiComponents->scoreLabel->setText(QString("<h1><font color='green'>Computing your score ... </font></h1>"));
         display.data = -1;
+        exerciseMode_pub.publish(display);
+        sleep(1);
+        display.data = 2;
         exerciseMode_pub.publish(display);
         return;
     }
     if (msg.data == string("skip")) {
-        std_msgs::Int32 display;
         display.data = -2;
         exerciseMode_pub.publish(display);
     }
     if (msg.data == string("home")) {
-        std_msgs::Int32 display;
         display.data = 100;
         exerciseMode_pub.publish(display);
         return;
