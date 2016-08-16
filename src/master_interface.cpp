@@ -72,7 +72,7 @@ void MasterInterface::speech_detector(std_msgs::String msg) {
         //uiComponents->scoreLabel->setText(QString("<h1><font color='green'>Computing your score ... </font></h1>"));
         display.data = -1;
         exerciseMode_pub.publish(display);
-        sleep(1);
+        sleep(2);
         display.data = 2;
         exerciseMode_pub.publish(display);
         return;
@@ -115,6 +115,9 @@ void MasterInterface::on_trialStop_clicked() {
     msg.data = -1;
     uiComponents->scoreLabel->setText(QString("<h1><font color='green'>Computing your score ... </font></h1>"));
 
+    exerciseMode_pub.publish(msg);
+    sleep(2);
+    msg.data = 2;
     exerciseMode_pub.publish(msg);
 }
 
