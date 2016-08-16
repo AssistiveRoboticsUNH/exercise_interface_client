@@ -48,10 +48,8 @@ void MasterInterface::speech_detector(std_msgs::String msg) {
     QString output;
     std_msgs::Int32 display;
     
-    if (msg.data == string("help")) {   
     output = QString("<h1><font color='green'>Speech Detected:<font size='5'> ") + QString(msg.data.c_str()) + QString("</font></font></h1>");
     uiComponents->SpeechOutputLabel->setText(output);
-    }
 
     if (msg.data == string("calibration")) {
         std_msgs::Int32 msg;
