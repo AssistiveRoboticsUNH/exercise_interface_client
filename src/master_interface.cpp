@@ -17,13 +17,10 @@ MasterInterface::MasterInterface(QMainWindow* parent) : QMainWindow(parent), uiC
     myoCalibrate_pub = n.advertise<std_msgs::Int32>("/myo/calibrate", 100);
     exerciseMode_pub = n.advertise<std_msgs::Int32>("/exercise/mode", 100);
 
-    //myo_l_OK = 0;
-    //myo_u_OK = 0;
     myo_sub_l = n.subscribe("/myo/l/ort", 10, &MasterInterface::myo_l_detector, this);
     myo_sub_u = n.subscribe("/myo/u/ort", 10, &MasterInterface::myo_u_detector, this);
-    score_sub = n.subscribe("/exercise/score", 1, &MasterInterface::score_display, this);
+    //score_sub = n.subscribe("/exercise/score", 1, &MasterInterface::score_display, this);
 
-    //speech_OK = 0;
     sphinx_sub = n.subscribe("/recognizer/output", 1, &MasterInterface::speech_detector, this);
 
     // unallows the user to change the size of the window
@@ -111,7 +108,7 @@ void MasterInterface::on_trialPractice3_clicked() {
 void MasterInterface::on_trialStop_clicked() {
     std_msgs::Int32 msg;
     msg.data = -1;
-    uiComponents->scoreLabel->setText(QString("<h1><font color='green'>Computing your score ... </font></h1>"));
+    //uiComponents->scoreLabel->setText(QString("<h1><font color='green'>Computing your score ... </font></h1>"));
 
     exerciseMode_pub.publish(msg);
     sleep(2);

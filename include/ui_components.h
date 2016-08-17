@@ -92,16 +92,6 @@ public:
         MyoLabel2->setAlignment(Qt::AlignTop | Qt::AlignLeft);
         MyoLabel2->setGeometry(QRect(COL4_X, COL4_Y+120, BWIDTH, 100));       
 
-//        TabletLabel = new QLabel(MasterInterface);
-//        TabletLabel->setText(QString("<h1><font color='red'>Tablet</font></h1>"));
-//        TabletLabel->setAlignment(Qt::AlignTop | Qt::AlignLeft);
-//        TabletLabel->setGeometry(QRect(COL4_X, COL4_Y+240, BWIDTH, 100));
-
-//        GlassLabel = new QLabel(MasterInterface);
-//        GlassLabel->setText(QString("<h1><font color='red'>Eyeglass</font></h1>"));
-//        GlassLabel->setAlignment(Qt::AlignTop | Qt::AlignLeft);
-//        GlassLabel->setGeometry(QRect(COL4_X, COL4_Y+360, BWIDTH, 100));
-
         SpeechOutputLabel = new QLabel(MasterInterface);
         SpeechOutputLabel->setText(QString("<h1><font color='red'>Speech Detected: None</font></h1>"));
         SpeechOutputLabel->setAlignment(Qt::AlignTop | Qt::AlignLeft);

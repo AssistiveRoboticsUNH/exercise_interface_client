@@ -48,17 +48,8 @@ private:
 // These functions are called when their corresponding button is pressed
 // to link a button to a function, see: ui_components.h
 private Q_SLOTS:  
-//  void on_trainingRecord_clicked();
-//  void on_trainingDelete_clicked();
-//  void on_trainingClear_clicked();
 
-//  void on_trialBegin_clicked();
-//  void on_trialPractice_clicked();
-//  void on_trialSandbox_clicked();
-
-//  void on_myoLaunch_clicked();
   void on_myoCalibrate_clicked();
-//  void on_naoLaunch_clicked();
   
   void on_trialStop_clicked();
   void on_trialPractice1_clicked();
