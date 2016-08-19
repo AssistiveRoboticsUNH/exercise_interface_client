@@ -46,3 +46,24 @@ http://wiki.ros.org/nao/Tutorials/Installation
 You will need to login and download something from here: https://community.aldebaran.com/ so contact Momotaz for this information.
 Also install this repo, as the naoqi has changed so we have preserved our version:  
 ```git clone https://github.com/idkm23/naoqi.git```
+
+How to use the client interface
+===
+This interface is for patients to practice the exercises. Before you launch the program, make sure the data files in ```myo_raw/myo_mdp/data1```, ```myo_raw/myo_mdp/data2```, and ```myo_raw/myo_mdp/data3```are up to date. All the buttons have voice control functions too, so you can either click the buttons or use voice control.
+- After you launch the interface, you should see a control panel. The Myo armbands should launch automatically. The corrsponding captions on the interface should turn green in a few seconds.
+- The speech recognition program will launch automatically. Say the word "help" to test it. The corresponding caption should turn green.
+- On the Android device, launch the Exercise Learner program. You should be able to see a 3D model.
+- Say "calibration" (or click "Calibrate Myo") to calibrate Myo. You should be able to see your arm motion from the 3D model too.
+- Say "task one" (or click "Task 1") to start practicing the first exercise. Or say "Task two", "task three" as you want.
+- The program will demonstrate the task for you. Say "skip" if you do not want to see the demonstration.
+- When you practice the exercise, you can always say "help" to get prompts.
+- Say "stop" (or click "Stop Practice") to end the exercise. The program will compute your score and display it on the Android device.
+- Start a task again. If it is the same task as before, the demonstration will be skipped automatically. I suggest you calibrate Myo before starting a task.
+- You can always say "home" (or click "Home/Reset") to end the current task.
+
+Note
+===
+- You need to calibrate the Myo armbands about every 2 minutes. Just say the word "calibration" or click the button.
+- Sometimes the speech recognition program fails to launch (10~20% chance). Just close the interface and start over again. It only recognizes words in the vocabulary.
+- If Myo fails to launch, usually it is because the power is low. Charge them whenever you finish exercises.
+- If the Android program does not respond, restart it. Make sure the IP is correct.
