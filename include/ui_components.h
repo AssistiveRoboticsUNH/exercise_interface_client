@@ -93,7 +93,7 @@ public:
         MyoLabel2->setGeometry(QRect(COL4_X, COL4_Y+120, BWIDTH, 100));       
 
         SpeechOutputLabel = new QLabel(MasterInterface);
-        SpeechOutputLabel->setText(QString("<h1><font color='red'>Speech Detected: None</font></h1>"));
+        SpeechOutputLabel->setText(QString("<h1><font color='red'>Speech Detected:<br> None</font></h1>"));
         SpeechOutputLabel->setAlignment(Qt::AlignTop | Qt::AlignLeft);
         SpeechOutputLabel->setGeometry(QRect(COL4_X, COL4_Y+240, BWIDTH, 100));
         /**Polish**/
